@@ -1,6 +1,12 @@
 
-class
-	new: (arg) =>
-		for key, value in pairs arg
-			@[key] = value
+{:getMode} = love.window
+
+Widget = require "widget"
+
+class extends Widget
+	update: (dt) =>
+		@x, @y = 0, 0
+		@w, @h = getMode!
+
+		super\update dt
 
