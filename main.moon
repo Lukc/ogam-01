@@ -34,7 +34,23 @@ love.load = ->
 				label: "New Game"
 
 				clicked: =>
-					pagestack\push GameArea!
+					pagestack\push Page {
+						GameArea {
+							w: 600
+							h: 400
+						}
+						Button {
+							x: 620
+							y: 20
+							w: 160
+							h: 40
+
+							label: "Go back"
+
+							clicked: =>
+								pagestack\pop!
+						}
+					}
 			}
 
 			Button {
