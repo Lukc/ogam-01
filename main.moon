@@ -35,10 +35,8 @@ love.load = ->
 
 				clicked: =>
 					pagestack\push Page {
-						GameArea {
-							w: 600
-							h: 400
-						}
+						GameArea {}
+
 						Button {
 							x: 620
 							y: 20

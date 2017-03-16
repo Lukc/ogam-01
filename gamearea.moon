@@ -2,6 +2,14 @@
 Widget = require "widget"
 
 class extends Widget
+	new: (arg) =>
+		Widget.__init @, arg
+
+		unless arg.w
+			@w = 600
+		unless arg.h
+			@h = 400
+
 	draw: =>
 		{:x, :y, :w, :h} = @rectangle
 

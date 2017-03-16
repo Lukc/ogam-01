@@ -63,6 +63,11 @@ _M = class
 			child.rectangle.x = @rectangle.x + (child.x or 0)
 			child.rectangle.y = @rectangle.y + (child.y or 0)
 
+		if @w
+			@rectangle.w = @w
+		if @h
+			@rectangle.h = @h
+
 		@\fireEvent "update", dt
 
 	registerTriggers: (collection) =>
