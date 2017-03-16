@@ -50,5 +50,5 @@ class extends Widget
 				@pressed = false
 
 	__tostring: =>
-		"@[Rectangle: #{@x}, #{@y}, #{@w}, #{@h}, \"#{@label}\"]"
+		"@[Button: \"#{@label}\"]"
 

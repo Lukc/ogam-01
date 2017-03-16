@@ -6,8 +6,6 @@ class
 		@callbacks = {}
 		@children = {}
 
-		print self
-
 		-- Requested values. Consider them to be public.
 		@x, @y, @w, @h = arg.x or 0, arg.y or 0, arg.w or 0, arg.h or 0
 
@@ -67,6 +65,6 @@ class
 		@\fireEvent "mousereleased", x, y, button, isTouch
 
 	__tostring: =>
-		"@[Button: #{@x}, #{@y}, #{@w}, #{@h}]"
+		"@[Widget: #{@x}, #{@y}, #{@w}, #{@h}]"
 
 

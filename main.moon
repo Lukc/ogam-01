@@ -3,6 +3,7 @@ PageStack = require "pagestack"
 
 Page = require "page"
 Button = require "button"
+Column = require "column"
 
 GameArea = require "gamearea"
 
@@ -18,25 +19,29 @@ love.load = ->
 		keypressed: (k) =>
 			print k
 
-		Button
-			x: 10
-			y: 10
-			w: 300
-			h: 42
-			label: "New Game"
+		Column {
+			Button {
+				x: 10
+				y: 10
+				w: 300
+				h: 42
+				label: "New Game"
 
-			clicked: =>
-				pagestack\push GameArea!
+				clicked: =>
+					pagestack\push GameArea!
+			}
 
-		Button
-			x: 10
-			y: 62
-			w: 300
-			h: 42
-			label: "Exit"
+			Button {
+				x: 10
+				y: 62
+				w: 300
+				h: 42
+				label: "Exit"
 
-			clicked: =>
-				pagestack\pop!
+				clicked: =>
+					pagestack\pop!
+			}
+		}
 	}
 
 love.draw = ->
