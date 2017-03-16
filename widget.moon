@@ -4,6 +4,18 @@ class
 		@callbacks = {}
 		@children = {}
 
+		print self
+
+		-- Requested values. Consider them to be public.
+		@x, @y, @w, @h = arg.x or 0, arg.y or 0, arg.w or 0, arg.h or 0
+
+		-- Computed values. Consider them to be protected.
+		@rectangle =
+			x: @x
+			y: @y
+			w: @w
+			h: @h
+
 		for key, value in pairs arg
 			if type(key) != "function"
 				continue
@@ -12,6 +24,8 @@ class
 
 		for i = 1, #arg
 			table.insert @children, arg[i]
+
+			arg[i].parent = self
 
 	getActiveChildren: =>
 		@children
@@ -32,7 +46,11 @@ class
 		@\fireEvent "draw"
 
 	update: (dt) =>
-		@\fireEvent "update"
+		if @parent
+			@rectangle.x = @x + @parent.rectangle.x
+			@rectangle.y = @y + @parent.rectangle.y
+
+		@\fireEvent "update", dt
 
 	keypressed: (key, scancode, isRepeat) =>
 		@\fireEvent "keypressed", key, scancode, isRepeat
@@ -45,4 +63,8 @@ class
 
 	mousereleased: (x, y, button, isTouch) =>
 		@\fireEvent "mousereleased", x, y, button, isTouch
+
+	__tostring: =>
+		"@[Button: #{@x}, #{@y}, #{@w}, #{@h}]"
+
 

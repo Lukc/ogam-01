@@ -25,6 +25,8 @@ love.load = ->
 
 			clicked: =>
 				print "Clickity click."
+
+				@x = @x + 5
 	}
 
 love.draw = ->

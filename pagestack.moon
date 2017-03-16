@@ -3,7 +3,7 @@ Widget = require "widget"
 
 class extends Widget
 	new: =>
-		super @, {}
+		super.__init @, {}
 
 	getLast: =>
 		@children[#@children]
@@ -32,5 +32,8 @@ class extends Widget
 		with @\resume!
 			if .resume
 				\resume!
+
+	__tostring: =>
+		"@[PageStack: #{#@children} children]"
 
 

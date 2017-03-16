@@ -9,12 +9,7 @@ Widget = require "widget"
 
 class extends Widget
 	new: (arg) =>
-		super @
-
-		@x = arg.x
-		@y = arg.y
-		@w = arg.w
-		@h = arg.h
+		super.__init @, arg
 
 		-- Text to display.
 		@label = arg.label
@@ -35,6 +30,8 @@ class extends Widget
 				setColor 255, 255, 255
 		else
 			setColor 128, 128, 128
+
+		{:x, :y, :w, :h} = @rectangle
 
 		rectangle "line", @x, @y, @w, @h
 		text @label or "", @x, @y

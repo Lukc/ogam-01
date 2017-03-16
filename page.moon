@@ -10,3 +10,6 @@ class extends Widget
 
 		super\update dt
 
+	__tostring: =>
+		"@[Page: #{#@children} children]"
+
