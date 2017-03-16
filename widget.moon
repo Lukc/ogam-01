@@ -1,6 +1,8 @@
 
 class
 	new: (arg) =>
+		arg = arg or {}
+
 		@callbacks = {}
 		@children = {}
 

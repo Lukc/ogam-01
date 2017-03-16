@@ -8,7 +8,7 @@ class extends Widget
 	getLast: =>
 		@children[#@children]
 
-	getActiveWidgets: =>
+	getActiveChildren: =>
 		{ @\getLast! }
 
 	push: (page, ...) =>
@@ -29,7 +29,10 @@ class extends Widget
 
 		table.remove @children
 
-		with @\resume!
+		if #@children == 0
+			return love.event.quit!
+
+		with @\getLast!
 			if .resume
 				\resume!
 

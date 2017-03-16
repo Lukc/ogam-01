@@ -4,6 +4,8 @@ PageStack = require "pagestack"
 Page = require "page"
 Button = require "button"
 
+GameArea = require "gamearea"
+
 local pagestack
 
 love.load = ->
@@ -21,12 +23,20 @@ love.load = ->
 			y: 10
 			w: 300
 			h: 42
-			label: "Click me!"
+			label: "New Game"
 
 			clicked: =>
-				print "Clickity click."
+				pagestack\push GameArea!
 
-				@x = @x + 5
+		Button
+			x: 10
+			y: 62
+			w: 300
+			h: 42
+			label: "Exit"
+
+			clicked: =>
+				pagestack\pop!
 	}
 
 love.draw = ->
