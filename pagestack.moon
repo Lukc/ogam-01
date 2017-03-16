@@ -43,3 +43,18 @@ class
 			if .keypressed
 				\keypressed k, r, u
 
+	keyreleased: (k, r, u) =>
+		with @\last!
+			if .keyreleased
+				\keyreleased k, r, u
+
+	mousepressed: (k, r, u) =>
+		with @\last!
+			if .mousepressed
+				\mousepressed k, r, u
+
+	mousereleased: (k, r, u) =>
+		with @\last!
+			if .mousereleased
+				\mousereleased k, r, u
+

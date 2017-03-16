@@ -22,6 +22,9 @@ love.load = ->
 			w: 300
 			h: 42
 			label: "Click me!"
+
+			clicked: =>
+				print "Clickity click."
 	}
 
 love.draw = ->
@@ -30,6 +33,15 @@ love.draw = ->
 love.update = (dt) ->
 	pagestack\update dt
 
-love.keypressed = (k, r, u) ->
-	pagestack\keypressed k, r, u
+love.keypressed = (k, sc, ir) ->
+	pagestack\keypressed k, sc, ir
+
+love.keyreleased = (k, sc, ir) ->
+	pagestack\keyreleased k, sc, ir
+
+love.mousepressed = (x, y, b, it) ->
+	pagestack\mousepressed x, y, b, it
+
+love.mousereleased = (x, y, b, it) ->
+	pagestack\mousereleased x, y, b, it
 
