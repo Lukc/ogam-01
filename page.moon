@@ -5,8 +5,13 @@ Widget = require "widget"
 
 class extends Widget
 	update: (dt) =>
-		@x, @y = 0, 0
-		@w, @h = getMode!
+		w, h = getMode!
+
+		@rectangle =
+			x: 0
+			y: 0
+			w: w
+			h: h
 
 		super\update dt
 

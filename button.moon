@@ -33,8 +33,8 @@ class extends Widget
 
 		{:x, :y, :w, :h} = @rectangle
 
-		rectangle "line", @x, @y, @w, @h
-		text @label or "", @x, @y
+		rectangle "line", x, y, w, h
+		text @label or "", x, y
 
 	mousepressed: (x, y, button, isRepeat) =>
 		if @\isWithin x, y

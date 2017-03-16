@@ -7,17 +7,19 @@ class
 		@children = {}
 
 		-- Requested values. Consider them to be public.
-		@x, @y, @w, @h = arg.x or 0, arg.y or 0, arg.w or 0, arg.h or 0
+		@x, @y, @w, @h = arg.x, arg.y, arg.w, arg.h
 
 		-- Computed values. Consider them to be protected.
-		@rectangle =
-			x: @x
-			y: @y
-			w: @w
-			h: @h
+		@rectangle = {
+			x: @x or 0
+			y: @y or 0
+			w: @w or 0
+			h: @h or 0
+		}
 
 		for key, value in pairs arg
-			if type(key) != "function"
+			-- FIXME: Identify event keys or forbid non-events.
+			if type(value) != "function"
 				continue
 
 			@callbacks[key] = value
@@ -30,8 +32,10 @@ class
 	getActiveChildren: =>
 		@children
 
-	isWithin: (x, y) =>
-		return x >= @x and y >= @y and x < @x + @w and y < @y + @h
+	isWithin: (X, Y) =>
+		{:x, :y, :w, :h} = @rectangle
+
+		return X >= x and Y >= y and X < x + w and Y < y + h
 
 	fireEvent: (event, ...) =>
 		callback = @callbacks[event]
@@ -46,9 +50,9 @@ class
 		@\fireEvent "draw"
 
 	update: (dt) =>
-		if @parent
-			@rectangle.x = @x + @parent.rectangle.x
-			@rectangle.y = @y + @parent.rectangle.y
+		for child in *@\getActiveChildren!
+			child.rectangle.x = @rectangle.x + (child.x or 0)
+			child.rectangle.y = @rectangle.y + (child.y or 0)
 
 		@\fireEvent "update", dt
 
@@ -65,6 +69,6 @@ class
 		@\fireEvent "mousereleased", x, y, button, isTouch
 
 	__tostring: =>
-		"@[Widget: #{@x}, #{@y}, #{@w}, #{@h}]"
+		"@[Widget: #{@rectangle.x}, #{@rectangle.y}, #{@rectangle.w}, #{@rectangle.h}]"
 
 

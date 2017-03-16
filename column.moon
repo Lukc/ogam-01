@@ -14,12 +14,11 @@ class extends Widget
 		{:x, :y, :w, :h} = @rectangle
 
 		setColor 128, 128, 128
-		rectangle "line", @x, @y, @w, @h
+		rectangle "line", x, y, w, h
 
 		super\draw!
 
 	update: (dt) =>
-		print "Updating #{self}."
 		super\update dt
 
 		w = 0
@@ -32,13 +31,15 @@ class extends Widget
 			h += @spacing
 
 		w = w + @padding * 2
-		h -= @spacing += @padding
+		h += @padding - @spacing
 
 		unless @h
 			@rectangle.h = h
 		unless @w
 			@rectangle.w = w
 
+		@\fireEvent "update", dt
+
 	__tostring: =>
-		"@[Column: #{@x}, #{@y}, #{@w}, #{@h}, \"#{@label}\"]"
+		"@[Column: #{#@children} children]"
 

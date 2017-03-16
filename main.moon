@@ -14,12 +14,18 @@ love.load = ->
 
 	pagestack\push Page {
 		draw: =>
+			love.graphics.setColor 255, 127, 200
 			love.graphics.print "Nyaa~", 0, 0
 
 		keypressed: (k) =>
 			print k
 
 		Column {
+			y: 40
+
+			update: (dt) =>
+				@x = (@parent.rectangle.w - @rectangle.w) / 2
+
 			Button {
 				x: 10
 				y: 10
