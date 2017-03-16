@@ -68,6 +68,12 @@ class
 	mousereleased: (x, y, button, isTouch) =>
 		@\fireEvent "mousereleased", x, y, button, isTouch
 
+	touchpressed: (...) =>
+		@\fireEvent "touchpressed", ...
+
+	touchreleased: (...) =>
+		@\fireEvent "touchreleased", ...
+
 	__tostring: =>
 		"@[Widget: #{@rectangle.x}, #{@rectangle.y}, #{@rectangle.w}, #{@rectangle.h}]"
 

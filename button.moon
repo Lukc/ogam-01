@@ -14,7 +14,8 @@ class extends Widget
 		-- Text to display.
 		@label = arg.label
 
-		@pressed = false
+		@pressed =
+			mouse: false
 
 		@callbacks.clicked = arg.clicked
 
@@ -39,15 +40,28 @@ class extends Widget
 	mousepressed: (x, y, button, isRepeat) =>
 		if @\isWithin x, y
 			if button == 1
-				@pressed = true
+				@pressed.mouse = true
 
 	mousereleased: (x, y, button, isRepeat) =>
-		if @pressed
+		if @pressed.mouse
 			if button == 1
 				if @\isWithin x, y
 					@\fireEvent "clicked"
 
-				@pressed = false
+				@pressed.mouse = false
+
+	touchpressed: (id, x, y, ...) =>
+		print "pressed", id, x, y
+		if @\isWithin x, y
+			@pressed[id] = true
+
+	touchreleased: (id, x, y, ...) =>
+		print "released", id, x, y
+		if @pressed[id]
+			if @\isWithin x, y
+				@\fireEvent "clicked"
+
+			@pressed[id] = nil
 
 	__tostring: =>
 		"@[Button: \"#{@label}\"]"

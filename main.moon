@@ -68,3 +68,9 @@ love.mousepressed = (x, y, b, it) ->
 love.mousereleased = (x, y, b, it) ->
 	pagestack\mousereleased x, y, b, it
 
+love.touchpressed = (id, x, y, dx, dy, pressure) ->
+	pagestack\touchpressed id, x, y, dx, dy, pressure
+
+love.touchreleased = (id, x, y, dx, dy, pressure) ->
+	pagestack\touchreleased id, x, y, dx, dy, pressure
+
