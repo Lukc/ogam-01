@@ -13,6 +13,9 @@ class
 		for i = 1, #arg
 			table.insert @children, arg[i]
 
+	getActiveChildren: =>
+		@children
+
 	isWithin: (x, y) =>
 		return x >= @x and y >= @y and x < @x + @w and y < @y + @h
 
@@ -22,7 +25,7 @@ class
 		if callback
 			callback @, ...
 
-		for child in *@children
+		for child in *@\getActiveChildren!
 			child[event] child, ...
 
 	draw: =>

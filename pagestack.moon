@@ -1,60 +1,36 @@
 
-class
+Widget = require "widget"
+
+class extends Widget
 	new: =>
-		@stack = {}
+		super @, {}
+
+	getLast: =>
+		@children[#@children]
+
+	getActiveWidgets: =>
+		{ @\getLast! }
 
 	push: (page, ...) =>
-		with last = @\last!
+		with last = @\getLast!
 			if last and .pause
 				\pause!
 
-		table.insert @stack, page
+		table.insert @children, page
 
-		with @\last!
+		with @\getLast!
 			if .load
 				\load ...
 
 	pop: =>
-		with @\last!
+		with @\getLast!
 			if .exit
 				\exit!
 
-		table.remove @stack
+		table.remove @children
 
 		with @\resume!
 			if .resume
 				\resume!
 
-	last: =>
-		@stack[#@stack]
-
-	draw: =>
-		with @\last!
-			if .draw
-				\draw!
-
-	update: (dt) =>
-		with @\last!
-			if .update
-				\update dt
-
-	keypressed: (k, r, u) =>
-		with @\last!
-			if .keypressed
-				\keypressed k, r, u
-
-	keyreleased: (k, r, u) =>
-		with @\last!
-			if .keyreleased
-				\keyreleased k, r, u
-
-	mousepressed: (k, r, u) =>
-		with @\last!
-			if .mousepressed
-				\mousepressed k, r, u
-
-	mousereleased: (k, r, u) =>
-		with @\last!
-			if .mousereleased
-				\mousereleased k, r, u
 
