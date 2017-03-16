@@ -1,5 +1,14 @@
 
-class
+inputEvents = {
+	"keypressed",
+	"keyreleased",
+	"mousepressed",
+	"mousereleased",
+	"touchpressed",
+	"touchreleased",
+}
+
+_M = class
 	new: (arg) =>
 		arg = arg or {}
 
@@ -56,25 +65,17 @@ class
 
 		@\fireEvent "update", dt
 
-	keypressed: (key, scancode, isRepeat) =>
-		@\fireEvent "keypressed", key, scancode, isRepeat
-
-	keyreleased: (key, scancode, isRepeat) =>
-		@\fireEvent "keyreleased", key, scancode, isRepeat
-
-	mousepressed: (x, y, button, isTouch) =>
-		@\fireEvent "mousepressed", x, y, button, isTouch
-
-	mousereleased: (x, y, button, isTouch) =>
-		@\fireEvent "mousereleased", x, y, button, isTouch
-
-	touchpressed: (...) =>
-		@\fireEvent "touchpressed", ...
-
-	touchreleased: (...) =>
-		@\fireEvent "touchreleased", ...
+	registerTriggers: (collection) =>
+		for event in *inputEvents
+			collection[event] = (...) ->
+				@[event] @, ...
 
 	__tostring: =>
 		"@[Widget: #{@rectangle.x}, #{@rectangle.y}, #{@rectangle.w}, #{@rectangle.h}]"
 
+for event in *inputEvents
+	_M.__index[event] = (...) =>
+		@\fireEvent event, ...
+
+_M
 

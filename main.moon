@@ -50,27 +50,11 @@ love.load = ->
 		}
 	}
 
+	pagestack\registerTriggers love
+
 love.draw = ->
 	pagestack\draw!
 
 love.update = (dt) ->
 	pagestack\update dt
-
-love.keypressed = (k, sc, ir) ->
-	pagestack\keypressed k, sc, ir
-
-love.keyreleased = (k, sc, ir) ->
-	pagestack\keyreleased k, sc, ir
-
-love.mousepressed = (x, y, b, it) ->
-	pagestack\mousepressed x, y, b, it
-
-love.mousereleased = (x, y, b, it) ->
-	pagestack\mousereleased x, y, b, it
-
-love.touchpressed = (id, x, y, dx, dy, pressure) ->
-	pagestack\touchpressed id, x, y, dx, dy, pressure
-
-love.touchreleased = (id, x, y, dx, dy, pressure) ->
-	pagestack\touchreleased id, x, y, dx, dy, pressure
 
