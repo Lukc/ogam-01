@@ -51,12 +51,10 @@ class extends Widget
 				@pressed.mouse = false
 
 	touchpressed: (id, x, y, ...) =>
-		print "pressed", id, x, y
 		if @\isWithin x, y
 			@pressed[id] = true
 
 	touchreleased: (id, x, y, ...) =>
-		print "released", id, x, y
 		if @pressed[id]
 			if @\isWithin x, y
 				@\fireEvent "clicked"
